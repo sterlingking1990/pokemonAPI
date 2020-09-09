@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity(),PokemonClickInterface, IPokemonLoadable
         setContentView(R.layout.activity_main)
 
         /**
+         * When the program launches, get all pokemon's default number of characters i.e 20
+         */
+        getAllPokemon()
+
+        /**
          * when the button is clicked, get all pokemon by entering the number of pokemon to get
          */
         btnLoadMore.setOnClickListener {
@@ -74,7 +79,30 @@ class MainActivity : AppCompatActivity(),PokemonClickInterface, IPokemonLoadable
     }
 
     override fun getAllPokemon() {
-        TODO("Not yet implemented")
+        GlobalScope.launch(Dispatchers.Main) {
+            val pokemonAllService = pokemonService.getPokemonCharacter()
+            try {
+                val response = pokemonAllService.await()
+                if (response.isSuccessful) {
+                    val pokemonAll = response.body() //This is single object Tmdb Movie response
+                    val pokemonList = pokemonAll?.results // This is list of TMDB Movie
+                    var adapter = PokemonTemplateAdapter(pokemonList, this@MainActivity)
+                    rvPokemon.adapter = adapter
+                    rvPokemon.layoutManager = GridLayoutManager(
+                        this@MainActivity,
+                        3,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+
+                } else {
+                    Toast.makeText(this@MainActivity,"Number of pokemon character could not be loaded",Toast.LENGTH_LONG).show()
+                }
+
+            } catch (e: Exception) {
+
+            }
+        }
     }
 
 
