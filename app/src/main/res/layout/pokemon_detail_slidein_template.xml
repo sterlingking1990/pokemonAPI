@@ -144,6 +144,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="H:"
+        android:textStyle="bold"
+        android:paddingStart="5dp"
         app:layout_constraintStart_toEndOf="@id/tvHeightLabel"
         app:layout_constraintBottom_toBottomOf="@id/imageSmall"
         tools:layout_editor_absoluteY="397dp" />
@@ -164,6 +166,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="W:"
+        android:textStyle="bold"
+        android:paddingStart="5dp"
+        android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
         app:layout_constraintBottom_toBottomOf="@id/imageSmall"
         tools:layout_editor_absoluteY="397dp" />

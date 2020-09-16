@@ -7,6 +7,7 @@ import java.io.IOException
 /**
  * Using safe api call to handle calls to the network by suspending funtions
  */
+
 open class BaseRepository{
     suspend fun <T:Any> safeApiCall(call:suspend ()->Response<T>,errorMessage:String):T?{
         val result:Result<T> = safeApiResult(call,errorMessage)
@@ -19,7 +20,6 @@ open class BaseRepository{
             is Result.Error-> {
                 Log.d("1. DataRepository", "$errorMessage & Exception - ${result.exception}")
             }
-
         }
         return data
     }

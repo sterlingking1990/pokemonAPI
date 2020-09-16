@@ -6,6 +6,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
@@ -30,7 +31,7 @@ object RetrofitFactory{
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    //Not logging the authkey if not debug
+
     private val client =
         if(BuildConfig.DEBUG){
             OkHttpClient().newBuilder()
@@ -52,6 +53,7 @@ object RetrofitFactory{
         .client(client)
         .baseUrl(baseUrl)
         .addConverterFactory(MoshiConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 

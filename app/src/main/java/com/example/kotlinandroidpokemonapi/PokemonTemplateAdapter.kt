@@ -1,17 +1,15 @@
 package com.example.kotlinandroidpokemonapi
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlinandroidpokemonapi.Data.PokeMonList
 import com.example.kotlinandroidpokemonapi.Data.Pokemon
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.all_pokemon_recycler_template.view.*
 
-class PokemonTemplateAdapter(val pokemon:List<Pokemon>?, var action: PokemonClickInterface):RecyclerView.Adapter<PokemonTemplateAdapter.ViewHolder>() {
+class PokemonTemplateAdapter(val pokemon: List<Pokemon>?, var action: PokemonClickInterface):RecyclerView.Adapter<PokemonTemplateAdapter.ViewHolder>() {
     /**
      * define the image url to fetch pokemon character images
      */
